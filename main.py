@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from sqlalchemy import Column, Integer, String, Numeric, create_engine, text
 
 app = Flask(__name__)
-conn_str = "mysql://root:iit123@localhost/boatdb"
+conn_str = "mysql+pymysql://root:CSET115@localhost/boatdb"
 engine = create_engine(conn_str, echo=True)
 conn = engine.connect()
 
@@ -46,11 +46,13 @@ def create_boat():
             text("INSERT INTO boats values (:id, :name, :type, :owner_id, :rental_price)"),
             request.form
         )
+        conn.commit()
         return render_template('boats_create.html', error=None, success="Data inserted successfully!")
     except Exception as e:
         error = e.orig.args[1]
         print(error)
         return render_template('boats_create.html', error=error, success=None)
+
 
 
 if __name__ == '__main__':

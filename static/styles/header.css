@@ -4,6 +4,8 @@
 
 .logo {
   width: 45px;
+  height: 45px;
+  border-radius: 50%;
 }
 
 header li {
@@ -14,7 +16,7 @@ header li {
 }
 
 .topBar{
-  background-color: #faf9f7;
+  background-color: darkblue;
   display:flex;
   justify-content: space-between;
   align-items:center;
@@ -67,17 +69,16 @@ body {
   background-color: grey;
   align-items: start;
   min-height: 100vh;
-  color: white;
-  font:
-
+  color: grey;
+  background-color: Aliceblue;
 }
 
 .footer {
   display: flex;
   flex-flow: row wrap;
   padding: 30px 30px 20px 30px;
-  color: #2f2f2f;
-  background-color: #fff;
+  color: white;
+  background-color: darkblue;
   border-top: 1px solid #e5e5e5;
 }
 

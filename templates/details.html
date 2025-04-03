@@ -1,0 +1,200 @@
+<style>
+    .cred_list{
+    font-size: 43px;
+    }
+    .remove_boat{
+        font-size: 33px;
+        color: salmon;
+        cursor: pointer;
+    }
+
+    .back{
+        font-size: 33px;
+    }
+    .remove_window{
+    width: 420px;
+     background-image: linear-gradient(black,grey);
+    border-radius: 23px;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 53;
+    right: 420;
+    }
+    .remove_options{
+        display: flex;
+        justify-content: space-evenly;
+        font-size: 33px;
+        color: gold;
+    }
+
+    .options_remove{
+        background-color: black;
+        border: 3px white groove;
+        border-radius: 12px;
+        padding: 13px;
+        cursor: pointer;
+    }
+
+    .options_remove_yes{
+        background-color: black;
+        border: 3px white groove;
+        border-radius: 12px;
+        padding: 13px;
+        cursor: pointer;
+        color: gold;
+    }
+
+    .options_remove:hover{
+    background-color: white;
+    color: red;
+
+    }
+
+    .options_remove_yes:hover{
+    background-color: white;
+    color: red;
+
+    }
+
+    .update_boat{
+        font-size: 33px;
+        color: salmon;
+        cursor: pointer;
+    }
+    .update_window{
+    width: 460px;
+    height: 280px;
+    background-image: linear-gradient(black,grey);
+    border-radius: 23px;
+    border: 3px gold groove;
+    position: absolute;
+    top: 96px;
+    left: 600px;
+    display: none;
+    flex-direction: column;
+    }
+
+    .update_holder{
+    display: flex;
+    flex-direction: row;
+    }
+
+    .current_cred{
+        width: 50%;
+    }
+    .new_cred{
+        width: 50%;
+
+    }
+    .update_options_holder{
+        display: flex;
+        justify-content: space-evenly;
+
+    }
+
+
+</style>
+
+{% extends "base.html" %}
+{% block body %}
+    <h2>Boat Details</h2>
+    <div class="remove_window" id="remove_window">
+        <h2>Remove Boat from database?</h2>
+        <ul class="cred_list">
+        <li>ID: {{boat['id']}}</li>
+        <li>Name: {{boat['name']}}</li>
+        <li>Type: {{boat['type']}}</li>
+        <li>Owner ID: {{boat['owner_id']}}</li>
+        <li>Rental Price: {{boat['rental_price']}}</li>
+    </ul>
+        <div class="remove_options">
+            <div class="options_remove"  id="remove_yes">
+                <form action="/removed/{{boat['id']}}" method="POST">
+                    <button class="options_remove_yes" type="submit">YES</button>
+                </form>
+            </div>
+            <div class="options_remove" id="remove_no">No</div>
+        </div>
+    </div>
+
+    <div class="update_window" id="update_window">
+        <div class="update_holder">
+            <div class="current_cred">
+                <h2>Current</h2>
+                <ul>
+             <li>ID: {{boat['id']}}</li>
+        <li>Name: {{boat['name']}}</li>
+        <li>Type: {{boat['type']}}</li>
+        <li>Owner ID: {{boat['owner_id']}}</li>
+        <li>Rental Price: {{boat['rental_price']}}</li>
+                </ul>
+            </div>
+
+
+            <div class="new_cred">
+                <h2>NEW</h2>
+               <form action="/update/{{ boat['id'] }}" method="POST">
+    <ul>
+        <li>Name: <input type="text" name="name" placeholder="Boat Name"></li>
+        <li>Type: <input type="text" name="type" placeholder="Boat Type"></li>
+        <li>Owner ID: <input type="number" name="owner_id" placeholder="Owner ID"></li>
+        <li>Rental Price: <input type="number" name="rental_price" placeholder="Rental Price"></li>
+    </ul>
+
+                      <div class="update_options_holder">
+           <button type="submit">UPDATE</button>
+
+        </div>
+</form>
+<button id="close_update">CANCEL</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <ul class="cred_list">
+        <li>ID: {{boat['id']}}</li>
+        <li>Name: {{boat['name']}}</li>
+        <li>Type: {{boat['type']}}</li>
+        <li>Owner ID: {{boat['owner_id']}}</li>
+        <li>Rental Price: {{boat['rental_price']}}</li>
+    </ul>
+
+
+<div class="remove_boat" id="remove_boat">Remove from Database</div>
+<div class="update_boat" id="update_boat">Update Boat Details</div>
+<a class="back" href="/boats/">Back to Boats</a>
+
+<script>
+    console.log("hello world");
+    document.write("hello world");
+    var remove = document.getElementById('remove_boat');
+    var remove_window = document.getElementById('remove_window');
+    var update_boat = document.getElementById('update_boat');
+    var update_window = document.getElementById('update_window');
+
+    remove.onclick = function(){
+        remove_window.style.display = 'flex';
+    };
+    var remove_no = document.getElementById('remove_no');
+    var remove_yes = document.getElementById('remove_yes');
+    remove_no.onclick = function(){
+        remove_window.style.display = 'none';
+    };
+
+    update_boat.onclick = function(){
+        update_window.style.display = 'flex';
+
+    }
+
+    var close_update = document.getElementById('close_update');
+    close_update.onclick = function(){
+        update_window.style.display = 'none';
+    };
+
+
+</script>
+
+{% endblock %}

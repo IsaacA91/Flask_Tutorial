@@ -1,0 +1,72 @@
+<style>
+
+    ul{
+    list-style: none;
+    }
+
+    .card_holder{
+    display: flex;
+
+    justify-content: space-evenly;
+    }
+
+    .boat_card{
+    color: gold;
+    height: 240px;
+    width: 240px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 23px;
+    background-color: rgba(0,0,0,0.5);
+
+    }
+
+    .boat_pic{
+    width: 120px;
+    height: 120px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: white solid 1px;
+    margin: auto;
+    }
+
+
+
+</style>
+
+
+{% extends "base.html" %}
+{% block body %}
+    <h1>search result page</h1>
+
+{% if results%}
+<h2>Search Results for "{{query}}"</h2>
+<div class="card_holder">
+{% for result in results %}
+    <div class="boat_card">
+
+        <ul>
+            <li>Name: {{ result.name}}</li>
+            <div class="boat_pic" style="background-image: url('{{ url_for("static", filename="images/sail_boat.jpg") }}');"></div>
+            <li>Type: {{result.type }}</li>
+            <li>Owner ID: {{result.owner_id}}</li>
+            <li>Rental Price: {{result.rental_price}}</li>
+        </ul>
+    </div>
+
+{% endfor %}
+
+            {% if boat_card | length < 1 %}
+
+            {% endif %}
+</div>
+
+
+
+
+{% else %}
+<p> No results found for "{{ query }}"</p>
+{% endif %}
+{% endblock %}

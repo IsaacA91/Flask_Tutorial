@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .search_box{
+    width: 620;
+    height: 520;
+    background-image: linear-gradient(black,grey);
+    margin: auto;
+    border-radius: 23px;
+    margin-bottom: 23px;
+    }
+
+    .search_header{
+    color: gold;
+    text-align: center;
+    font-size: 23px;
+
+    }
+
+    .search_holder{
+    border-radius: 23px;
+
+    margin-top: 33px;
+    }
+
+    .boat_id_holder{
+    justify-content: space-evenly;
+    height: 43px;
+    margin-bottom: 12px;
+    display: flex;
+    }
+
+    .boat_name_holder{
+    justify-content: space-evenly;
+    height: 43px;
+    display: flex;
+    margin-bottom: 12px;
+    }
+
+    .boat_type_holder{
+    justify-content: space-evenly;
+    height: 43px;
+    display: flex;
+     margin-bottom: 12px;
+    }
+
+    .owner_id_holder{
+    justify-content: space-evenly;
+    height: 43px;
+    margin-bottom: 12px;
+    display: flex;
+    }
+
+    .rental_id_holder{
+    justify-content: space-evenly;
+    height: 43px;
+    margin-bottom: 32px;
+    display: flex;
+    }
+
+    .search_button{
+    border: 3px white solid;
+    height: 63px;
+    width: 120px;
+    margin-top: 53px;
+    margin: auto;
+    background-color: blue;
+    border-radius: 13px;
+    font-size: 23px;
+    text-align: center;
+    padding-top: 9px;
+    }
+
+</style>
+
+{% extends "base.html" %}
+{% block body %}
+    <h1>Let's search</h1>
+<div class="search_box">
+    <div class="search_header">Search By...</div>
+    <div class="search_holder">
+<form method='POST' action="/search">
+        <div class="boat_name_holder">
+            <p>Boat Name</p>
+            <input type='text' name="query" placeholder="Enter boat name to search...">
+        </div>
+
+        <button class="search_button" type="submit">SEARCH</button>
+</form>
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>
